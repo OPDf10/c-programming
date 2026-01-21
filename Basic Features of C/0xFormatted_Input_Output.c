@@ -32,6 +32,7 @@ int main()
     char doubleLines = '=', singleLine = '-';
     char space = ' ';
 
+    // Used for loop as I did learn it before :)
     for (int i=1; i < 25; i++)
     {
         printf("%c", doubleLines);
@@ -54,20 +55,12 @@ int main()
     }
     printf("\n");
 
-    printf("Milk:");
-    printf("%19.2f\n", 3.49);
-
-    printf("Eggs:");
-    printf("%19.2f\n", 2.99);
-
-    printf("Bread:");
-    printf("%18.2f\n", 1.49);
-
-    printf("Cheese:");
-    printf("%17.2f\n", 4.99);
-
-    printf("Apples:");
-    printf("%17.2f\n", 0.99);
+    // Here I fixed the formattig strings.
+    printf("%-20s%4.2f\n", "Milk:", 3.99);
+    printf("%-20s%4.2f\n", "Eggs:", 2.99);
+    printf("%-20s%4.2f\n", "Bread:", 1.99);
+    printf("%-20s%4.2f\n", "Cheese:", 4.99);
+    printf("%-20s%4.2f\n", "Apples:", 0.99);
     
     return 0;
 }
