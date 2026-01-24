@@ -165,26 +165,41 @@ Write a program that:
 */
 
 #include <stdio.h>
+#define tax_rate 0.085f
 
 int main()
 {
-    char itemOne[15];
-    float price = 0.0f, tax = 0.085f, subtotal = 0.0f, total = 0.0f;
+    float priceOne, priceTwo, priceThree;
+    float subtotal = 0.0f;
+    float tax_amount;
+    float total;
+    int counter = 0;
 
-    printf("Wlecome to Smart Grocery Checkout System\nPlz! Fill the next:\nItem name: ");
-    scanf("%s", itemOne); // No '&' sign with arrays.
+    printf("%10s", "FILL THE NEXT\n");
 
-    printf("Price: $");
-    scanf("%f", &price);
+    printf("Item1 Price: $");
+    scanf("%f", &priceOne);
+    subtotal += priceOne;
+    counter++;
 
-    subtotal = price * tax;
-    total = price + subtotal;
+    printf("Item2 Price: $");
+    scanf("%f", &priceTwo);
+    subtotal += priceTwo;
+    counter++;
 
-    printf("====================\n");
-    printf("%-15s%15.2f\n", "Your price before tax: $", price);
-    printf("%-15s%15.2f\n", "Amount of increse: $", subtotal);
-    printf("%-15s%15.2f\n", "After tax: $", total);
-    printf("====================\n");
+    printf("Item3 Price: $");
+    scanf("%f", &priceThree);
+    subtotal += priceThree;
+    counter++;
+    tax_amount = subtotal * tax_rate;
+    total = tax_amount + subtotal;
+
+    printf("\n==== Receipt ====\n");
+    printf("%-20s%10d\n", "Number of items: ", counter);
+    printf("%-20s%10.3f\n", "Total before tax: $", subtotal);
+    printf("%-20s%10.3f\n", "Tax amount: $", tax_amount);
+    printf("%-20s%10.3f\n", "Total after tax: $", total);
+    printf("==== The End ====\n");
 
 
     return 0; 
