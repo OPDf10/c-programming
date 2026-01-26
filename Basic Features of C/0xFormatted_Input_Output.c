@@ -244,119 +244,223 @@ Detailed analysis...
 */
 
 
+// #include <stdio.h>
+// #include <stdbool.h>
+
+// int main()
+// {
+//     int userInput;
+
+//     //Starting by user mode - Getting data
+//     printf("%5s", "===== Welcom to IHSS =====\n");
+//     printf("%5s", "USER mode");
+//     printf("\nWhich status are you in sir/ma'am ?\n1- Home\n2- Away\n3- Sleep\n4- Vacation\n");
+
+//     scanf("%d", &userInput);
+
+//     switch (userInput)
+//     {
+//         case 1:
+//             printf("Updated! User is in home.");
+//             break;
+//         case 2:
+//             printf("Updated! User is away.");
+//             break;
+//         case 3:
+//             printf("Updated! User is a sleep.");
+//             break;
+//         case 4:
+//             printf("Updated! User is in vacation.");
+//             break;
+//         default:
+//             printf("Your input is wrong, try again!\n");
+//             break;
+//     }
+
+//     // Now, system mode and detection. '0' is open.
+//     // Getting data
+//     bool door = 1, window = 1, motion = 1, smoke = 1;
+//     float temp = 0.0f;
+//     int input = 0, hours = 0, mins = 0;
+
+//     printf("%5s", "\n\nMACHINE mode");
+//     printf("%5s", "\nSelect 1 for (Closed) or 0 for (Open):\n");
+    
+//     printf("Door is: ");
+//     scanf("%d", &input);
+//     door = input;
+
+//     printf("Window is: ");
+//     scanf("%d", &input);
+//     window = input;
+
+//     printf("Motion is: ");
+//     scanf("%d", &input); // 1 for safe, 0 for danger!
+//     motion = input;
+
+//     printf("Smoke is: ");
+//     scanf("%d", &input);  // 1 for safe, 0 for danger!
+//     smoke = input;
+
+//     printf("%s", "What is the temprature? ");
+//     scanf("%f", &temp);
+
+//     printf("What is the time now? (Write in form: hours:mins) ");
+//     scanf("%d:%d", &hours, &mins);
+
+
+//     // Now comes the report
+//     printf("%5s", "\n\n=== Report Of Your Security Status ===\n");
+//     printf("SENSOR READINGS:\n");
+//     if (door == 0)
+//         printf("Door is: Open!\n");
+//     else
+//         printf("Door is: closed!\n");
+    
+//     if (window == 0)
+//         printf("Window is: Open!\n");
+//     else
+//         printf("Window is: closed!\n");
+
+//     if (motion == 0)
+//         printf("Motion: DANGER! strange object in move!\n");
+//     else
+//         printf("Motion: It's all good..\n");
+
+//     if (smoke == 0)
+//         printf("Smoke: DANGER! HOUSE ON FIRE!\n");
+//     else
+//         printf("Smoke: It's all good..\n");
+
+//     printf("Temperature: %.2f°C\n", temp);
+//     printf("Time: %d:%d (Daytime)\n", hours, mins);
+
+//     printf("\n1-Home 2-Away 3-Sleep 4-Vacation");
+//     printf("\nUSER STATUS: %d\n", userInput);
+    
+//     if (motion == 1 && smoke == 1)
+//     {
+//         if (door == 0 && window == 0)
+//         {
+//             printf("SECURITY LEVEL: MID Alert - The entrances to the house are not secure!\n");
+//         } else if (door == 0 || window == 0) {
+//             printf("SECURITY LEVEL: LOW Alert - one of entrances to the house are not secure!\n");
+//         } else {
+//             printf("Everything is excellent, the house is safe:)\n");
+//         }
+    
+//     } else {
+//         printf("SECURITY LEVEL: HIGH Alert - Intrusion detected!\n");
+//     }
+    
+
+
+
+//     return 0;
+// }
+
+
+
+
+
+
+
+
+
+
+
+
+/*      Smart Temperature Monitor & Alert System
+Practise on while/do-while loops.
+
+=== SMART TEMPERATURE MONITOR ===
+
+Enter temperature in Celsius (-100 to stop): 25
+Temperature recorded: 25.0°C
+Status: Normal
+
+Enter temperature in Celsius (-100 to stop): 30
+Temperature recorded: 30.0°C
+Status: Warm
+
+Enter temperature in Celsius (-100 to stop): 38.5
+Temperature recorded: 38.5°C
+⚠️ WARNING: High temperature!
+
+Enter temperature in Celsius (-100 to stop): -100
+
+=== MONITORING REPORT ===
+Total readings: 3
+Average temperature: 27.8°C
+Highest: 38.5°C
+Lowest: 25.0°C
+Alerts triggered: 1
+
+Continue monitoring? (y/n): y
+(New session starts...)
+
+*/
+
 #include <stdio.h>
-#include <stdbool.h>
+
 
 int main()
 {
-    int userInput;
+     char choice;
+     float temp, avgtemp = 0.0f;
+     float highest_temp = -1000;
+     float lowest_temp = 1000;
+     int count = 0;
+     int alert = 0;
 
-    //Starting by user mode - Getting data
-    printf("%5s", "===== Welcom to IHSS =====\n");
-    printf("%5s", "USER mode");
-    printf("\nWhich status are you in sir/ma'am ?\n1- Home\n2- Away\n3- Sleep\n4- Vacation\n");
+     printf("%-20s", "=== SMART TEMPERATURE MONITOR ===\n");
+     printf("Do you want to start inserting readings? (y/n): ");
+     scanf("%c", &choice);
 
-    scanf("%d", &userInput);
+     while (choice == 'Y' || choice == 'y')
+     {
+          do {
+          printf("\nEnter temperature in Celsius (-100 to stop): ");
+          scanf("%f", &temp);
+          printf("Temperature recorded: %.2f°C\n", temp);
+          if (temp >= 40){
+               printf("⚠️ WARNING: High temperature!\n");
+          } else if (temp >= 35){
+               printf("Status: Warm\n");
+          } else if (temp >= 25){
+               printf("Status: normal\n");
+          } else if (temp >= 16){
+               printf("Status: cold\n");
+          } else {
+               printf("⚠️ WARNING: Low temperature!\n");
+          }
 
-    switch (userInput)
-    {
-        case 1:
-            printf("Updated! User is in home.");
-            break;
-        case 2:
-            printf("Updated! User is away.");
-            break;
-        case 3:
-            printf("Updated! User is a sleep.");
-            break;
-        case 4:
-            printf("Updated! User is in vacation.");
-            break;
-        default:
-            printf("Your input is wrong, try again!\n");
-            break;
-    }
+          count++;
+          avgtemp += temp;
 
-    // Now, system mode and detection. '0' is open.
-    // Getting data
-    bool door = 1, window = 1, motion = 1, smoke = 1;
-    float temp = 0.0f;
-    int input = 0, hours = 0, mins = 0;
+          if (highest_temp < temp)
+               highest_temp = temp;
+          if (lowest_temp > temp)
+               lowest_temp = temp;
 
-    printf("%5s", "\n\nMACHINE mode");
-    printf("%5s", "\nSelect 1 for (Closed) or 0 for (Open):\n");
-    
-    printf("Door is: ");
-    scanf("%d", &input);
-    door = input;
+          } while (temp != -100);
+          alert += 1;
+          
+          printf("%-20s", "\n\n=== MONITORING REPORT ===\n");
+          printf("Total readings: %d\n", count);
+          printf("Average temperature: %.2f°C\n", avgtemp/count);
+          printf("Highest: %.2f°C\n", highest_temp);
+          printf("Lowest: %.2f°C\n", lowest_temp);
+          printf("Alerts triggered: %d\n", alert);
+          
 
-    printf("Window is: ");
-    scanf("%d", &input);
-    window = input;
+          printf("\nContinue monitoring? (y/n): ");
+          scanf("%c", &choice);
+     }
 
-    printf("Motion is: ");
-    scanf("%d", &input); // 1 for safe, 0 for danger!
-    motion = input;
-
-    printf("Smoke is: ");
-    scanf("%d", &input);  // 1 for safe, 0 for danger!
-    smoke = input;
-
-    printf("%s", "What is the temprature? ");
-    scanf("%f", &temp);
-
-    printf("What is the time now? (Write in form: hours:mins) ");
-    scanf("%d:%d", &hours, &mins);
+     printf("\nGoodbye!\n");
+     
 
 
-    // Now comes the report
-    printf("%5s", "\n\n=== Report Of Your Security Status ===\n");
-    printf("SENSOR READINGS:\n");
-    if (door == 0)
-        printf("Door is: Open!\n");
-    else
-        printf("Door is: closed!\n");
-    
-    if (window == 0)
-        printf("Window is: Open!\n");
-    else
-        printf("Window is: closed!\n");
-
-    if (motion == 0)
-        printf("Motion: DANGER! strange object in move!\n");
-    else
-        printf("Motion: It's all good..\n");
-
-    if (smoke == 0)
-        printf("Smoke: DANGER! HOUSE ON FIRE!\n");
-    else
-        printf("Smoke: It's all good..\n");
-
-    printf("Temperature: %.2f°C\n", temp);
-    printf("Time: %d:%d (Daytime)\n", hours, mins);
-
-    printf("\n1-Home 2-Away 3-Sleep 4-Vacation");
-    printf("\nUSER STATUS: %d\n", userInput);
-    
-    if (motion == 1 && smoke == 1)
-    {
-        if (door == 0 && window == 0)
-        {
-            printf("SECURITY LEVEL: MID Alert - The entrances to the house are not secure!\n");
-        } else if (door == 0 || window == 0) {
-            printf("SECURITY LEVEL: LOW Alert - one of entrances to the house are not secure!\n");
-        } else {
-            printf("Everything is excellent, the house is safe:)\n");
-        }
-    
-    } else {
-        printf("SECURITY LEVEL: HIGH Alert - Intrusion detected!\n");
-    }
-    
-
-
-
-    return 0;
+     return 0;
 }
-
-
